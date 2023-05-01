@@ -1,0 +1,92 @@
+---
+import GenericTest from "@assets/images/generic-test.png";
+import { Image } from "astro:assets";
+import { CollectionEntry, getEntryBySlug } from "astro:content";
+
+export interface Props {
+    article?: CollectionEntry<"news">;
+    debug?: boolean;
+}
+
+let { article, debug } = Astro.props;
+if (typeof debug === "undefined") debug = false;
+if (!article) article = await getEntryBySlug("news", "@debug");
+const isoDate = article.data.date.toISOString().split("T")[0];
+---
+
+<style>
+    .article {
+        transition-property: height, margin, box-shadow;
+    }
+    .article-details {
+        transition-property: height, background-color, backdrop-filter;
+    }
+</style>
+<script>
+    const relTime = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+    const SECOND = 1000;
+    const MINUTE = 60 * SECOND;
+    const HOUR = 60 * MINUTE;
+    const DAY = 24 * HOUR;
+    const WEEK = 7 * DAY;
+    const MONTH = 30 * DAY;
+    const YEAR = 365 * DAY;
+    [...document.getElementsByClassName("article-date-rel")].forEach((e) => {
+        const offset =
+            Date.now() - new Date(e.getAttribute("data-date")!).getTime();
+        if (offset > YEAR) {
+            e.innerHTML = relTime.format(-Math.floor(offset / YEAR), "year");
+        } else if (offset > MONTH) {
+            e.innerHTML = relTime.format(-Math.floor(offset / MONTH), "month");
+        } else if (offset > WEEK) {
+            e.innerHTML = relTime.format(-Math.floor(offset / WEEK), "week");
+        } else if (offset > DAY) {
+            e.innerHTML = relTime.format(-Math.floor(offset / DAY), "day");
+        } else if (offset > HOUR) {
+            e.innerHTML = relTime.format(-Math.floor(offset / HOUR), "hour");
+        }
+        e.removeAttribute("style");
+    });
+</script>
+<a
+    href={debug ? "#" : `/news/${article.slug}`}
+    class=":uno: flex relative h-60 w-72 bg-zinc-800 rounded-md overflow-clip group hover:(h-64 -my-2 shadow-lg) duration-150 article active:scale-99 shadow"
+>
+    <Image
+        src={article.data.image ?? GenericTest}
+        alt=""
+        class=":uno: absolute top-0 left-0 w-full h-full object-cover group-active:scale-98 z-10"
+    />
+    <div
+        class=":uno: flex flex-col absolute bottom-0 left-0 h-10 w-full bg-zinc-8 group-hover:(h-64 bg-zinc-8/80 backdrop-blur) duration-75 article-details ease-in px-2 py-1 z-20"
+    >
+        <div class=":uno: flex flex-row items-center">
+            <h1 class=":uno: text-zinc-1 font-medium text-xl z-30">
+                {article.data.title}
+            </h1>
+            { article.data.draft && (
+                <div class=":uno: bg-red-6 text-white leading-none h-fit p-1 rounded-md ml-2">Draft</div>
+            )}
+        </div>
+        {
+            article.data.description && (
+                <p class=":uno: text-zinc-2 text-sm opacity-0 group-hover:opacity-100 transition-opacity z-30">
+                    {article.data.description}
+                </p>
+            )
+        }
+    </div>
+    <div
+        class=":uno: absolute bottom-0 right-0 z-20 h-10 items-center flex pr-2"
+    >
+        <div
+            class=":uno: text-sm text-zinc-5 group-hover:opacity-0 transition-opacity duration-150 z-30 article-date-rel"
+            style="opacity: 0;"
+            data-date={article.data.date.toISOString()}
+        >
+        </div>
+    </div>
+    <div
+        class=":uno: absolute bottom-0 right-0 text-zinc-5 transition-opacity text-sm pr-1 opacity-0 group-hover:opacity-100 z-30"
+    >{isoDate}</div>
+</a>

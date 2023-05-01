@@ -1,0 +1,13 @@
+---
+import MaybeLink from "@components/MaybeLink.astro";
+
+export interface Props {
+    level: number;
+    id?: string;
+}
+const { level, id } = Astro.props;
+const Tag = `h${level}`
+---
+<MaybeLink href={id ? `#${id}` : undefined}>
+    <Tag><slot/></Tag>
+</MaybeLink>

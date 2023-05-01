@@ -53,6 +53,17 @@
     vscode-languageserver-types "^3.17.1"
     vscode-uri "^3.0.3"
 
+"@astrojs/markdoc@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/markdoc/-/markdoc-0.1.1.tgz#f67422f0d367f220ea17ae84f6ba188d62330c6c"
+  integrity sha512-NJgMTZWTCcL+4qmDim/wi53Mc6X7hk12hyI3JHWW7oiWVchdrvbdvG5i3c2bmT73+bMtG8XOEt2vvapQRixAKw==
+  dependencies:
+    "@markdoc/markdoc" "^0.2.2"
+    esbuild "^0.17.12"
+    gray-matter "^4.0.3"
+    kleur "^4.1.5"
+    zod "^3.17.3"
+
 "@astrojs/markdown-remark@^2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@astrojs/markdown-remark/-/markdown-remark-2.1.4.tgz#7f23cf2f967d5040fe74b04df25d4e37bea7311c"
@@ -499,6 +510,13 @@
   resolved "https://registry.yarnpkg.com/@ljharb/has-package-exports-patterns/-/has-package-exports-patterns-0.0.2.tgz#c1718939b65efa1f45f53686c2fcfa992b9fb68f"
   integrity sha512-4/RWEeXDO6bocPONheFe6gX/oQdP/bEpv0oL4HqjPP5DCenBSt0mHgahppY49N0CpsaqffdwPq+TlX9CYOq2Dw==
 
+"@markdoc/markdoc@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@markdoc/markdoc/-/markdoc-0.2.2.tgz#cea8b7f0935408dc7180865077c0fb61ba70e51e"
+  integrity sha512-0TiD9jmA5h5znN4lxo7HECAu3WieU5g5vUsfByeucrdR/x88hEilpt16EydFyJwJddQ/3w5HQgW7Ovy62r4cyw==
+  optionalDependencies:
+    "@types/markdown-it" "12.2.3"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -603,12 +621,30 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.30.tgz#44cb52f32a809734ca562e685c6473b5754a7818"
   integrity sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==
 
+"@types/linkify-it@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/linkify-it/-/linkify-it-3.0.2.tgz#fd2cd2edbaa7eaac7e7f3c1748b52a19143846c9"
+  integrity sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==
+
+"@types/markdown-it@12.2.3":
+  version "12.2.3"
+  resolved "https://registry.yarnpkg.com/@types/markdown-it/-/markdown-it-12.2.3.tgz#0d6f6e5e413f8daaa26522904597be3d6cd93b51"
+  integrity sha512-GKMHFfv3458yYy+v/N8gjufHO6MSZKCOXpZc5GXIWWy8uldwfmPn98vp81gZ5f9SVw8YYBctgfJ22a2d7AOMeQ==
+  dependencies:
+    "@types/linkify-it" "*"
+    "@types/mdurl" "*"
+
 "@types/mdast@^3.0.0":
   version "3.0.11"
   resolved "https://registry.yarnpkg.com/@types/mdast/-/mdast-3.0.11.tgz#dc130f7e7d9306124286f6d6cee40cf4d14a3dc0"
   integrity sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==
   dependencies:
     "@types/unist" "*"
+
+"@types/mdurl@*":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/mdurl/-/mdurl-1.0.2.tgz#e2ce9d83a613bacf284c7be7d491945e39e1f8e9"
+  integrity sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==
 
 "@types/ms@*":
   version "0.7.31"
@@ -923,7 +959,7 @@ astro-seo@^0.7.2:
   resolved "https://registry.yarnpkg.com/astro-seo/-/astro-seo-0.7.2.tgz#b6ef5d1590063631c03394fbeb501973a0460912"
   integrity sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==
 
-astro@^2.3.2:
+astro@^2.2.0:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/astro/-/astro-2.3.3.tgz#5f625cf8a9c01c53a50decf85ccdee7d7b2ce8d5"
   integrity sha512-LH9e42VoK8QqHCbZcFAf0GGZs4WVjfq3kJ/hrYgwpPyf8e2uUym4W9+DzM6+vEn7kbUq8Ec0l63zQQl3eXqxZQ==
@@ -1326,7 +1362,7 @@ es-module-lexer@^1.1.0:
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.2.1.tgz#ba303831f63e6a394983fde2f97ad77b22324527"
   integrity sha512-9978wrXM50Y4rTMmW5kXIC09ZdXQZqkE4mxhwkd8VbzsGkXGPgV4zWuqQJgCEzYngdo2dYDa0l8xhX4fkSwJSg==
 
-esbuild@^0.17.5:
+esbuild@^0.17.12, esbuild@^0.17.5:
   version "0.17.18"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.18.tgz#f4f8eb6d77384d68cd71c53eb6601c7efe05e746"
   integrity sha512-z1lix43jBs6UKjcZVKOw2xx69ffE2aG0PygLL5qJ9OS/gy0Ewd1gW/PUQIOIQGXBHWNywSc0floSKoMFF8aK2w==
@@ -1838,7 +1874,7 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
-kleur@^4.0.3, kleur@^4.1.4:
+kleur@^4.0.3, kleur@^4.1.4, kleur@^4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
@@ -3431,7 +3467,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@^3.20.6:
+zod@^3.17.3, zod@^3.20.6:
   version "3.21.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
   integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
