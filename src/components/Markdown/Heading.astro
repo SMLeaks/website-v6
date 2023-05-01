@@ -5,6 +5,7 @@ export interface Props {
     level: number;
     id?: string;
 }
+console.log(Astro.props)
 const { level, id } = Astro.props;
 const Tag = `h${level}`
 ---

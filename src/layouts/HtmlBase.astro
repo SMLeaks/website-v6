@@ -3,9 +3,10 @@ import Logo from "@assets/images/logo.png";
 import {SEO} from 'astro-seo';
 import { getImage } from "astro:assets";
 export interface Props {
-    title?: string;
+    title?: string | undefined;
+    description?: string | undefined;
 }
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 const favicon_logo = await getImage({
     src: Logo,
     width: 240,
@@ -20,7 +21,7 @@ const og_logo = await getImage({
 }, {})
 
 const _title = `SMLeaks${title ? ` | ${title}` : ''}`;
-const _description = 'Welcome to SMLeaks!';
+const _description = description ?? 'Welcome to SMLeaks!';
 ---
 
 <!DOCTYPE html>

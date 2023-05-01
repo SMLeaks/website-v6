@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+export interface Props {
+  src: string;
+  alt: string;
+  title?: string;
+  __optimizedSrc?: ImageMetadata;
+}
+console.log(Astro.props);
+const { src, alt, title, __optimizedSrc } = Astro.props;
+let _src = src.startsWith('@public') ? src.slice('@public'.length) : src;
+---
+
+<a href={_src} class="img-link group">
+    {
+        __optimizedSrc ? (
+          <Image src={__optimizedSrc} alt={alt} width={800} quality="high" title={title} />
+        ) : (
+          <img src={src} alt={alt} title={title} />
+        )
+      }      
+</a>
