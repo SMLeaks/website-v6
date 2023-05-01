@@ -1,0 +1,63 @@
+---
+import Logo from "@assets/images/logo.png";
+import {SEO} from 'astro-seo';
+import { getImage } from "astro:assets";
+export interface Props {
+    title?: string;
+}
+const { title } = Astro.props;
+const favicon_logo = await getImage({
+    src: Logo,
+    width: 240,
+    height: 240,
+    format: "png",
+}, {});
+const og_logo = await getImage({
+    src: Logo,
+    width: 80,
+    height: 80,
+    format: 'png'
+}, {})
+
+const _title = `SMLeaks ${title ? ` | ${title}` : ''}`;
+const _description = 'Welcome to SMLeaks!';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href={Astro.site?.href.slice(0, -1) + favicon_logo.src} />
+    <SEO
+        title={_title},
+        description={_description}
+        noindex
+        nofollow
+        openGraph={{
+            basic: {
+                title: _title,
+                type: 'website',
+                image: Astro.site?.href.slice(0, -1) + og_logo.src
+            },
+            optional: {
+                description: _description
+            }
+        }}
+        twitter={{
+            title: _title,
+            description: _description,
+            image: Astro.site?.href.slice(0, -1) + og_logo.src,
+            card: 'summary'
+        }}
+    />
+    <meta name="theme-color" content="#E67E22" />
+    <meta name="msapplication-navbutton-color" content="#E67E22" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#E67E22" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
