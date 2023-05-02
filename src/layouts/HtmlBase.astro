@@ -5,8 +5,15 @@ import { getImage } from "astro:assets";
 export interface Props {
     title?: string | undefined;
     description?: string | undefined;
+    image?: ImageMetadata | string | undefined;
+    imageCard?: boolean | undefined;
+    type?: string | undefined;
+    article?: {
+      publishedTime?: string;
+      tags?: string[];
+    }; 
 }
-const { title, description } = Astro.props;
+const { title, description, image, imageCard, type, article } = Astro.props;
 const favicon_logo = await getImage({
     src: Logo,
     width: 240,
@@ -14,7 +21,7 @@ const favicon_logo = await getImage({
     format: "png",
 }, {});
 const og_logo = await getImage({
-    src: Logo,
+    src: image ?? Logo,
     width: 80,
     height: 80,
     format: 'png'
@@ -22,6 +29,7 @@ const og_logo = await getImage({
 
 const _title = `SMLeaks${title ? ` | ${title}` : ''}`;
 const _description = description ?? 'Welcome to SMLeaks!';
+const _image = Astro.site?.href.slice(0, -1) + og_logo.src;
 ---
 
 <!DOCTYPE html>
@@ -40,18 +48,19 @@ const _description = description ?? 'Welcome to SMLeaks!';
         openGraph={{
             basic: {
                 title: _title,
-                type: 'website',
-                image: Astro.site?.href.slice(0, -1) + og_logo.src
+                type: type ?? 'website',
+                image: _image
             },
             optional: {
                 description: _description
-            }
+            },
+            article: article 
         }}
         twitter={{
             title: _title,
             description: _description,
-            image: Astro.site?.href.slice(0, -1) + og_logo.src,
-            card: 'summary'
+            image: _image,
+            card: imageCard ? 'summary_large_image' : 'summary'
         }}
     />
     <meta name="theme-color" content="#E67E22" />
