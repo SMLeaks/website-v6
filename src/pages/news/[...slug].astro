@@ -74,6 +74,7 @@ const { Content } = await article.render();
       <Image
         src={article.data.image ?? GenericTest}
         alt={article.data.title}
+        loading="eager"
         width={1024}
         quality="max"
         class="sm:rounded-xl w-full"
