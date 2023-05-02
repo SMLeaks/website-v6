@@ -6,7 +6,6 @@ export interface Props {
   title?: string;
   __optimizedSrc?: ImageMetadata;
 }
-console.log(Astro.props);
 const { src, alt, title, __optimizedSrc } = Astro.props;
 let _src = src.startsWith('@public') ? src.slice('@public'.length) : src;
 ---
