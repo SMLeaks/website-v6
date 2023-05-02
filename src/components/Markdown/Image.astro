@@ -15,7 +15,7 @@ let _src = src.startsWith('@public') ? src.slice('@public'.length) : src;
         __optimizedSrc ? (
           <Image src={__optimizedSrc} alt={alt} width={800} quality="high" title={title} />
         ) : (
-          <img src={src} alt={alt} title={title} />
+          <img src={src} alt={alt} title={title} loading="lazy" decoding="async" />
         )
       }      
 </a>
