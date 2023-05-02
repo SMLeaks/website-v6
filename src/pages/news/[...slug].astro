@@ -59,7 +59,7 @@ const { Content } = await article.render();
     @apply mb-4;
   }
 </style>
-<HtmlBase title={article.data.title} description={article.data.description}>
+<HtmlBase title={article.data.title} description={article.data.description} image={article.data.image} imageCard type="article">
   <main class="flex flex-col items-center w-full sm:p-2">
     <div class="mb-4">
       <div class="hidden md:block mb-4 px-2">
