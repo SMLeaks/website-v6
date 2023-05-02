@@ -54,6 +54,8 @@ const isoDate = article.data.date.toISOString().split("T")[0];
 >
     <Image
         src={article.data.image ?? GenericTest}
+        height={300}
+        quality="max"
         alt=""
         class=":uno: absolute top-0 left-0 w-full h-full object-cover group-active:scale-98 z-10"
     />

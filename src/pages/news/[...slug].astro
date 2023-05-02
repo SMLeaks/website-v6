@@ -34,6 +34,9 @@ const { Content } = await article.render();
   article a.img-link {
     @apply overflow-clip sm:hover:scale-102 sm:active:(scale-101 duration-0) transition-transform w-[calc(100%+1rem)] items-center flex flex-col -mx-2 sm:(w-full mx-0 mb-2);
   }
+  article a.heading-link h1,h2,h3,h4,h5,h6 {
+    @apply after:(content-['#'] text-blue underline hover:opacity-100 opacity-0 transition-opacity duration-50);
+  }
   article h1 {
     @apply text-4xl font-bold mt-6 mb-4;
   }
@@ -61,7 +64,7 @@ const { Content } = await article.render();
 </style>
 <HtmlBase title={article.data.title} description={article.data.description} image={article.data.image} imageCard type="article">
   <main class="flex flex-col items-center w-full sm:p-2">
-    <div class="mb-4">
+    <div class="mb-4 w-full max-w-5xl">
       <div class="hidden md:block mb-4 px-2">
         <h1 class="font-bold text-5xl">
           {article.data.title}
@@ -73,7 +76,7 @@ const { Content } = await article.render();
         alt={article.data.title}
         width={1024}
         quality="max"
-        class="sm:rounded-xl w-full max-w-5xl"
+        class="sm:rounded-xl w-full"
       />
       <div class="md:hidden px-2">
         <h1 class=" font-bold text-3xl sm:text-4xl">

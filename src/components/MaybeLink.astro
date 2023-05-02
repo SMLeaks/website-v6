@@ -1,7 +1,8 @@
 ---
 export interface Props {
   href: string | undefined;
+  class: string | undefined;
 }
-const { href } = Astro.props;
+const { href, class: _class } = Astro.props;
 ---
-{href ? <a href={href}><slot/></a> : <><slot/></>}
+{href ? <a href={href} class={_class}><slot/></a> : <><slot/></>}

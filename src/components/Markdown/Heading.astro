@@ -8,6 +8,6 @@ export interface Props {
 const { level, id } = Astro.props;
 const Tag = `h${level}`
 ---
-<MaybeLink href={id ? `#${id}` : undefined}>
+<MaybeLink href={id ? `#${id}` : undefined} class="heading-link">
     <Tag><slot/></Tag>
 </MaybeLink>
