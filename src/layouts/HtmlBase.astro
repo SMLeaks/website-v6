@@ -22,8 +22,7 @@ const favicon_logo = await getImage({
 }, {});
 const og_logo = await getImage({
     src: image ?? Logo,
-    width: 80,
-    height: 80,
+    width: imageCard ? 400 : 80,
     format: 'png'
 }, {})
 
