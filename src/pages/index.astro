@@ -1,10 +1,23 @@
 ---
 import HtmlBase from "@layouts/HtmlBase.astro";
-
+let build = "unknown";
+if (process.env.CF_PAGES_BRANCH && process.env.CF_PAGES_COMMIT_SHA) {
+  build = `${process.env.CF_PAGES_BRANCH}+${process.env.CF_PAGES_COMMIT_SHA.slice(0,7)}`;
+}
 ---
 
+<style>
+  body {
+    @apply bg-zinc-9 p-4 text-zinc-1;
+  }
+</style>
 <HtmlBase title="Home">
-    Hello, World!
-    <br/>
-    <a href='/news/' class="text-blue-500 hover:underline">News</a>
+  <p>Welcome to SMLeaks v6</p>
+  <a class=`block text-zinc-3 rounded-md p-2 bg-zinc-8 w-fit ${!process.env.CF_PAGES_COMMIT_SHA ? 'cursor-not-allowed' : ''}` href={process.env.CF_PAGES_COMMIT_SHA ? `https://github.com/SMLeaks/website-v6/commit/${process.env.CF_PAGES_COMMIT_SHA}` : undefined}>
+    <span>Build</span>
+    <pre class="inline bg-zinc-7 p-1 rounded">{build}</pre>
+  </a>
+  <hr class="my-2 border-zinc-5" />
+  <h3>Currently Implemented Pages</h3>
+  <a href="/news/" class="text-blue-4 hover:underline">News - /news</a>
 </HtmlBase>

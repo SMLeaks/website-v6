@@ -7,6 +7,7 @@ declare global {
     interface ProcessEnv {
       URL?: string;
       CF_PAGES_URL?: string;
+      CF_PAGES_COMMIT_SHA?: string;
     }
   }
 }
@@ -16,8 +17,17 @@ export default defineConfig({
   experimental: {
     assets: true
   },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  },
   site: process.env.URL ?? process.env.CF_PAGES_URL ?? 'http://localhost:3000',
-  integrations: [UnoCSS({
-    injectReset: true
-  }), markdoc()]
+  integrations: [
+    UnoCSS({
+      injectReset: true
+    }),
+    //@ts-ignore
+    markdoc()
+  ]
 });

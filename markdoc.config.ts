@@ -7,11 +7,13 @@ import { defineMarkdocConfig } from '@astrojs/markdoc/config';
 import Heading from '@components/Markdown/Heading.astro';
 //@ts-ignore
 import Image from '@components/Markdown/Image.astro';
+//@ts-ignore
+import HeaderAnchor from '@components/Markdown/HeaderAnchor.astro';
 
 export default defineMarkdocConfig({
     tags: {
         anchor: {
-            render: "a"
+            render: HeaderAnchor
         }
     },
     nodes: {

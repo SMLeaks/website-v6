@@ -28,6 +28,9 @@ const { Content } = await article.render();
 ---
 
 <style is:global>
+  body {
+    @apply bg-zinc-9 text-zinc-1;
+  }
   article img {
     @apply w-full max-w-2xl sm:rounded-xl;
   }
@@ -36,6 +39,9 @@ const { Content } = await article.render();
   }
   article a.heading-link h1,h2,h3,h4,h5,h6 {
     @apply after:(content-['#'] text-blue underline hover:opacity-100 opacity-0 transition-opacity duration-50);
+  }
+  article a.header-anchor {
+    @apply w-full block pb-2;
   }
   article h1 {
     @apply text-4xl font-bold mt-6 mb-4;

@@ -7,15 +7,27 @@ export interface Props {
   __optimizedSrc?: ImageMetadata;
 }
 const { src, alt, title, __optimizedSrc } = Astro.props;
-let _src = src.startsWith('@public') ? src.slice('@public'.length) : src;
+let _src = src.startsWith("@public") ? src.slice("@public".length) : src;
 ---
 
-<a href={_src} class="img-link group">
-    {
-        __optimizedSrc ? (
-          <Image src={__optimizedSrc} alt={alt} width={800} quality="high" title={title} />
-        ) : (
-          <img src={src} alt={alt} title={title} loading="lazy" decoding="async" />
-        )
-      }      
+<a href={_src} class="img-link group" aria-label={alt}>
+  {
+    __optimizedSrc ? (
+      __optimizedSrc.format === "gif" ? (
+        <img
+          src={_src}
+          width={__optimizedSrc.width}
+          height={__optimizedSrc.height}
+          alt={alt}
+          title={title}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <Image src={__optimizedSrc} alt={alt} quality="max" title={title} />
+      )
+    ) : (
+      <img src={_src} alt={alt} title={title} loading="lazy" decoding="async" />
+    )
+  }
 </a>

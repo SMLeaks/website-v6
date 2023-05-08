@@ -4,11 +4,15 @@ import HtmlBase from "@layouts/HtmlBase.astro";
 import { getCollection } from "astro:content";
 const articles = (await getCollection("news")).filter(
   (article) =>
-    (!article.data.draft || process.env.NODE_ENV === "development") &&
+    (!article.data.draft || import.meta.env.DEV) &&
     !article.data.hidden
 );
 ---
-
+<style>
+  body {
+    @apply bg-zinc-9;
+  }
+</style>
 <HtmlBase title="News">
   <div class="flex flex-row flex-wrap p-6 gap-4">
     {
