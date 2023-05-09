@@ -34,10 +34,13 @@ const { Content } = await article.render();
   article img {
     @apply w-full max-w-2xl sm:rounded-xl;
   }
-  article a.img-link {
-    @apply overflow-clip sm:hover:scale-102 sm:active:(scale-101 duration-0) transition-transform w-[calc(100%+1rem)] items-center flex flex-col -mx-2 sm:(w-full mx-0 mb-2);
+  article .img-link {
+    @apply overflow-clip w-[calc(100%+1rem)] items-center flex flex-col -mx-2 sm:(w-full mx-0 mb-2);
   }
-  article a.heading-link h1,h2,h3,h4,h5,h6 {
+  article .img-link[href] {
+    @apply sm:hover:scale-102 sm:active:(scale-101 duration-0) transition-transform
+  }
+  article a.heading-link * {
     @apply after:(content-['#'] text-blue underline hover:opacity-100 opacity-0 transition-opacity duration-50);
   }
   article a.header-anchor {
@@ -62,6 +65,7 @@ const { Content } = await article.render();
     @apply text-base font-bold mt-1;
   }
   article {
+    @apply w-full max-w-3xl flex flex-col px-2;
     font-size: 100%;
   }
   article p {
@@ -93,8 +97,6 @@ const { Content } = await article.render();
       </div>
     </div>
 
-    <article class="w-full max-w-3xl flex px-2">
-      <Content />
-    </article>
+    <Content />
   </main>
 </HtmlBase>

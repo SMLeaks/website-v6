@@ -7,10 +7,11 @@ export interface Props {
   __optimizedSrc?: ImageMetadata;
 }
 const { src, alt, title, __optimizedSrc } = Astro.props;
-let _src = src.startsWith("@public") ? src.slice("@public".length) : src;
+const pub = src.startsWith("@public");
+let _src = pub ? src.slice("@public".length) : src;
+const Tag = pub ? 'a' : 'div';
 ---
-
-<a href={_src} class="img-link group" aria-label={alt}>
+<Tag href={pub ? _src : undefined} class="img-link group" aria-label={alt}>
   {
     __optimizedSrc ? (
       __optimizedSrc.format === "gif" ? (
@@ -30,4 +31,4 @@ let _src = src.startsWith("@public") ? src.slice("@public".length) : src;
       <img src={_src} alt={alt} title={title} loading="lazy" decoding="async" />
     )
   }
-</a>
+</Tag>
